@@ -46,10 +46,22 @@ namespace PruebaBBDD
             DataTable pokemonElegido = miConexion.getPokemonPorId(idActual);
             nombrePokemon.Text = pokemonElegido.Rows[0]["nombre"].ToString();
             pictureBox1.Image = convierteBlobAImagen((byte[])pokemonElegido.Rows[0]["imagen"]);
+            especie.Text = pokemonElegido.Rows[0]["especie"].ToString();
+            peso.Text = pokemonElegido.Rows[0]["peso"].ToString();
+            altura.Text = pokemonElegido.Rows[0]["altura"].ToString();
         }
+ 
+
 
         private Image convierteBlobAImagen(byte[] img) {
             return (Image.FromStream(new System.IO.MemoryStream(img)));
+        }
+
+        private void caracteristicas_Click(object sender, EventArgs e)
+        {
+            int id = idActual;
+            Info ventana = new Info(id);
+            ventana.Show();
         }
     }
 }
